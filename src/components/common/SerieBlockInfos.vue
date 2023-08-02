@@ -9,19 +9,21 @@
         {{ props.serie.title }}
       </li>
       <li>{{ props.serie.rating }} / 5</li>
+      <li>{{ props.serie.averageRuntime }} min</li>
       <li>
         {{ props.serie.year }}
       </li>
     </ul>
   </div>
+  <div v-if="props.displaySummary" v-html="props.serie.summary"></div>
 </template>
 
 <script setup lang="ts">
 import { type SerieInfos } from '@/model/series'
-// const serie = defineserie<SerieInfos>()
 
 const props = defineProps<{
-  serie: SerieInfos
+  serie: SerieInfos,
+  displaySummary: boolean
 }>()
 </script>
 

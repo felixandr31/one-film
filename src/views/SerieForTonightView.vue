@@ -1,7 +1,12 @@
 <template>
-  <div>Tonight</div>
+  <SerieForTonight v-if="getRandomSerieForTonight" :serie="getRandomSerieForTonight"></SerieForTonight>
+  <div v-else>Select series in your list to obtain a serie for tonight</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useSeriesStore } from '@/stores/seriesStore'
+import SerieForTonight from '@/components/serie-for-tonight/SerieForTonight.vue';
 
-<style scoped></style>
+const { getRandomSerieForTonight } = useSeriesStore()
+
+</script>

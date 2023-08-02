@@ -3,6 +3,9 @@ export interface SerieInfos {
     title: string,
     image: string,
     year: number,
-    // avrLength: number,
-    rating: number
+    averageRuntime: number,
+    rating: number,
+    summary?: string,
+    isInMyList?: boolean,
+    isInMyListForTonight?: boolean
 }

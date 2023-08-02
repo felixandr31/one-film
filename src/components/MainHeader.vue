@@ -23,8 +23,11 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-let activeItem = ref('search-series')
-const ttt = import.meta.env.VITE_TVMAZE_BASE_URL
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+let activeItem = ref('')
+
 const navItems: NavItem[] = [
   {
     name: 'Search',
@@ -40,8 +43,9 @@ const navItems: NavItem[] = [
   }
 ]
 
-onMounted(() => {
-  console.log('cci', ttt)
+onMounted(async () => {
+  await router.isReady() 
+  activeItem.value = router.currentRoute.value.fullPath.substring(1)
 })
 
 interface NavItem {
@@ -53,5 +57,3 @@ const changeActive = (newActive: string) => {
   activeItem.value = newActive
 }
 </script>
-
-<style scoped></style>
