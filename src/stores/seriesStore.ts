@@ -49,7 +49,15 @@ export const useSeriesStore = defineStore('series', {
         }
       },
       alphabeticSortMyList () {
-        this.mySerieList.map(serie => serie.title).sort()
+        this.mySerieList.sort((a, b) => {
+          if (a.title > b.title) {
+            return 1
+          }
+          if (a.title < b.title) {
+            return -1
+          }
+          return 0
+        })
       },
 
       toggleTonightSerie (id: number) {

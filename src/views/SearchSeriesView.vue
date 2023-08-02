@@ -1,45 +1,43 @@
 <template>
   <div class="mb-3 mx-3">
     <label
-      for="inputSerie"
+      for="input-serie"
       class="form-label"
       >Looking for a serie:</label
     >
     <input
+    v-model="searchSerie"
       type="text"
-      v-model="searchSerie"
-      @input="handleChange"
-      class="form-control"
       id="inputSerie"
+      class="form-control"
+      placeholder="Enter a serie name"
+      @input="handleChange"
     />
-    <div class="input-append">
-      <img
-        src="../assets/search.svg"
-        alt="search icon"
-      />
-    </div>
   </div>
-  <button @click="alphabeticSortMyList">Sort by title</button>
-  <SearchSeries
+  <div v-if="seriesResult.length > 0" class="container">
+    <SearchSeries
     v-for="serie in seriesResult"
     :key="serie.id"
     :serie="serie"
-  >
-  </SearchSeries>
+    >
+    </SearchSeries>
+  </div>
+  <div v-else class="container pl-5 pt-5 fs-4">
+    No result found
+  </div>
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { type SerieInfos } from '../model/series'
-import { useSeriesStore } from '@/stores/seriesStore'
 import RestResource from '../services/restRessources'
-import SearchSeries from '@/components/search-component/SearchSeries.vue'
+import SearchSeries from '@/components/search-serie/SearchSeries.vue'
 
 
 const restRessource = new RestResource()
 const searchSerie = ref('')
 const seriesResult = ref<SerieInfos[]>([])
-const { alphabeticSortMyList } = useSeriesStore()
 
 const handleChange = () => {
   restRessource.getByQuery(searchSerie.value).then((res) => {

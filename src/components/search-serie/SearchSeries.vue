@@ -1,15 +1,16 @@
 <template>
-  <div class="container my-3 mx-2">
+  <div class="container my-3 px-0 d-inline-flex align-items-center justify-content-between">
     <SerieBlockInfos :serie="props.serie" :display-summary="false"></SerieBlockInfos>
     <button
       type="button"
-      class="btn btn-primary float-right"
-      :class="isInMyList ? 'btn-warning' : 'btn-primary'"
+      class="btn float-right"
+      :class="isInMyList ? 'btn-warning' : 'btn-info'"
       @click=" handleClick"
     >
     {{ isInMyList ? 'Retirer de ma liste': 'Ajouter à ma liste' }}
     </button>
   </div>
+  <hr>
 </template>
 
 <script setup lang="ts">
@@ -41,4 +42,8 @@ const handleClick = () => {
   
 }
 </script>
-<style scoped></style>
+<style scoped>
+hr:last-of-type {
+display: none;
+}
+</style>

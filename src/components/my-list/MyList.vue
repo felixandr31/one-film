@@ -1,7 +1,13 @@
 <template>
-  <div class="container my-3 mx-2">
+  <div class="container my-3 px-0 d-inline-flex align-items-center justify-content-between">
     <SerieBlockInfos :serie="props.serie" :display-summary="false"></SerieBlockInfos>
-    <input type="checkbox" :checked="props.serie.isInMyListForTonight" @change="updateTonightList" />
+    <div>
+      <input class="form-check-input" type="checkbox" :checked="props.serie.isInMyListForTonight"  
+      @change="updateTonightList" id="CheckSerieForTonight">
+      <label class="form-check-label px-2" for="CheckSerieForTonight">
+        Tonight list
+      </label>
+    </div>
     <button
       type="button"
       class="btn btn-warning float-right"
@@ -10,6 +16,7 @@
       Retirer de ma liste
     </button>
   </div>
+  <hr>
 </template>
 
 <script setup lang="ts">
@@ -31,8 +38,9 @@ const removeToMyList = () => {
 const updateTonightList = () => {
   toggleTonightSerie(props.serie.id)
 }
-const addToMySelectionForTonight = () => {
-  console.log(props.serie)
-}
 </script>
-<style scoped></style>
+<style scoped>
+hr:last-of-type {
+display: none;
+}
+</style>

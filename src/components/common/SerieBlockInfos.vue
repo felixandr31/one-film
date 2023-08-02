@@ -1,10 +1,9 @@
 <template>
   <img
     :src="serie.image"
-    :alt="'image de la serie' + props.serie.title"
+    :alt="'image de la serie \'' + props.serie.title + '\''"
   />
-  <div class="align-middle d-inline-block">
-    <ul>
+    <ul class="px-0 w-25">
       <li>
         {{ props.serie.title }}
       </li>
@@ -14,8 +13,7 @@
         {{ props.serie.year }}
       </li>
     </ul>
-  </div>
-  <div v-if="props.displaySummary" v-html="props.serie.summary"></div>
+  <div v-if="props.displaySummary" v-html="props.serie.summary" class="mt-2"></div>
 </template>
 
 <script setup lang="ts">
@@ -30,5 +28,8 @@ const props = defineProps<{
 <style scoped>
 ul {
   list-style-type: none;
+}
+.list-serie-info {
+  max-width: 250px
 }
 </style>
